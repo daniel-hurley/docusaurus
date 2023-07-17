@@ -12,13 +12,14 @@ An attempt to consolidate the large swath of Information Technology (IT) learnin
 ## What this repo is not
 
 - An authorative source for configuration or architecture design
-- An engineers playground for taking notes
+- An engineers playground for taking notes 
+- An invitation for storing bookmarks
 - An opinion outlet, whether that be to further a certain technology or other agenda
 - The "one stop shop" for all IT learning
 
 ## IT Learning
 
-Learning in IT takes a lifelong commitment. This repo, just that as of life, is an ever evolving organism of structure and information based on the relevant moment in time. I encourage those reading and are interested in collaborating their notes to create a pull request and upon merge request, we can look to incorporate your contributions into the structure.
+Learning in IT takes a lifelong commitment. This repo, just that as of life, is an ever evolving organism of structure and information based on the relevant moment in time. I encourage those reading and those that are interested in collaborating their notes to create a pull request, and upon merge request, we can look to incorporate your contributions into the structure.
 
 ## The File Structure
 
@@ -75,4 +76,4 @@ Learning in IT takes a lifelong commitment. This repo, just that as of life, is 
         └── start.md
 ```
 
-As contributors push to the repository, this tree display needs to be updated.
+**As contributors push to the repository, this tree display needs to be updated.*
