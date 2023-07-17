@@ -1,0 +1,4 @@
+# Sample YAML/YML Template
+template:
+  use:
+    case: many
