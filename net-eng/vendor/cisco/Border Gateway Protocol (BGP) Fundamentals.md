@@ -40,11 +40,11 @@ All other numbers in the 0 to 4294967295 range are reserved.
 
 ! Start BGP with configuring the ASN
 
-#router bgp [ASN]
+`#router bgp [ASN]`
 
 ! Configure a statically defined neighbor, and specify the remote ASN that the neighbor has
 
-#neighbor [ip address] remote-as [asn]
+`#neighbor [ip address] remote-as [asn]`
 
 To complete a neighbor relationship this has to be configured on both sides of the link.
 
@@ -63,7 +63,7 @@ When a rotuer is trying to form an eBGP neighbor relationship, by default all eB
 
 ! Configure an eBGP neighbor for multihop (increases TTL)
 
-#neighbor [ip address] ebgp-multihop
+`#neighbor [ip address] ebgp-multihop`
 
 ! Force a router to use its source address for BGP packets to use the specified interface
 
@@ -71,7 +71,7 @@ When a rotuer is trying to form an eBGP neighbor relationship, by default all eB
 
 ! Verify
 
-#show ip bgp summary
+`#show ip bgp summary`
 
 iBGP vs eBGP Neighborship Differences
 
@@ -138,13 +138,15 @@ BGP has a table that it stores and keeps all of its routes. It is called the BGP
 The output of show ip bgp displays a high level overview of all the routes learned via BGP. To the left of the Network Column there are various codes to help identify the route:
 
 - – Means it is a valid route and can be installed in the routing table
-- > – The best route BGP has discovered for that specific prefix
-- r – Failure to put this prefix in the IP routing table (Better route already in routing table, Routing table is maxed (memory is full), VRF routing table limit succeeded)
-- i – Learned about this prefix from a iBGP neighbor
+- \> Means the best route BGP has discovered for that specific prefix
+- r Means that there is a failure to put this prefix in the IP routing table (Better route already in routing table, Routing table is maxed (memory is full), VRF routing table limit succeeded)
+- i Means that it learned about this prefix from a iBGP neighbor
 
 A next hop of 0.0.0.0 means that the local router advertises this either via network or redistribution command. The Path Column shows the AS path that the particular prefix was learned from. A ? means that the prefix was locally learned within the routers AS.
 
 ! Verify BGP Learned Routes
+
+```
 
 #show ip bgp [prefix/subnet]
 
@@ -155,10 +157,11 @@ A next hop of 0.0.0.0 means that the local router advertises this either via net
 #show ip bgp neighbors [ip address] advertised-routes
 
 #show ip bgp summary
+```
 
 BGP uses multiple path attributes to determine best path for a certain prefix. By default, if no BGP PAs have been explicitly set, BGP routers use the BGP AS_PATH (autonomous system path) PA when choosing the best route among many competing routes. The AS_PATH attribute is also used to prevent routing loops. If a router receives a BGP Update and the AS_PATH (or AS_SET) has an autonomous number that is the same as its own, it will drop it. AS_SEQ is a component of the AS_PATH attribute also. The AS_SEQ is simply the list of ASs a BGP prefix goes through in order. When route summarization is performed on routes coming from multiple ASs, then something called an AS_SET is used. AS_SET is simply all the ASes that are in that summarization. However, since it cannot decipher the order it just lists them out in brackets like so {6 8 2 5}.
 
-### Injecting Routes into BGP
+## Injecting Routes into BGP
 
 There are three (3) ways to inject routes into BGP:
 
@@ -170,7 +173,7 @@ The network command for BGP is different than IGPs. It does not “turn on” BG
 
 ! To inject a route into BGP, use the following command in BGP config mode. The mask is optional. If the mask is omitted then the router assumes a classful boundary.
 
-#network [subnet] mask [mask]
+`#network [subnet] mask [mask]`
 
 There is also the auto-summary command in BGP. The auto-summary command does not affect any network commands with the mask command included. The specific mask specified for the prefix will look into the routing table and advertise only that specific prefix/length. If the mask command is ommited, then the auto-summary command will advertise the classful route.
 
@@ -186,7 +189,7 @@ The second way to inject routes into BGP is by using redistribution command in B
 
 ! Configure redistribution in BGP router config mode
 
-#redistribute [static|ospf|eigrp|rip|connected]
+`#redistribute [static|ospf|eigrp|rip|connected]`
 
 This command has many other options like implementing route-maps and metrics. However, that is out of the scope for this article.
 
@@ -194,7 +197,7 @@ The third way to add routes into BGP is by using summarization. This aggregates 
 
 ! Configure the prefix to be sent out as a BGP Update with accompanying length
 
-#aggregate-address [prefix] [prefix-length] [summary-only]
+`#aggregate-address [prefix] [prefix-length] [summary-only]`
 
 If you do not specify the summary-only command then BGP will advertise the summarized routes *and* the specific routes. Specifying summary-only only advertises the summary routes to its neighbor. This command has to be accompanied by a matching network or redistribute command to successfully send the summary. Applying this command alone will not create the route even if it is in your routing table.
 
@@ -224,4 +227,4 @@ The neighbor next-hop-self command changes the next-hop IP address to the source
 
 ! Configure a iBGP neighbor to send the next-hop IP address of it’s source interface of neighbor relationship in the update message
 
-#neighbor [IP] next-hop-self
+`#neighbor [IP] next-hop-self`
