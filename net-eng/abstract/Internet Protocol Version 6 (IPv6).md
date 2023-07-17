@@ -1,4 +1,7 @@
-# Internet Protocol Version 6 (IPv6)
+Title | Internet Protocol Version 6 (IPv6)
+--- | ---
+Contributor | Daniel Hurley [@daniel-hurley](https://github.com/daniel-hurley/)
+Date | 07-17-2023
 
 ### **Introduction**
 

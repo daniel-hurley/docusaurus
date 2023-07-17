@@ -36,6 +36,10 @@ Learning in IT takes a lifelong commitment. This repo, just that as of life, is 
 │       └── start.md
 ├── net-eng
 │   ├── abstract
+│   │   ├── Internet Protocol Version 6 (IPv6).md
+│   │   ├── Quality of Service (QoS).md
+│   │   └── start.md
+│   ├── cabling
 │   │   └── start.md
 │   ├── network-arch
 │   │   └── start.md
@@ -63,17 +67,19 @@ Learning in IT takes a lifelong commitment. This repo, just that as of life, is 
 │       │   └── start.md
 │       └── python
 │           └── start.md
-└── system-eng
-    ├── abstract
-    │   └── start.md
-    ├── container
-    │   └── start.md
-    ├── linux
-    │   └── start.md
-    ├── system-arch
-    │   └── start.md
-    └── windows
-        └── start.md
+├── system-eng
+│   ├── abstract
+│   │   └── start.md
+│   ├── container
+│   │   └── start.md
+│   ├── linux
+│   │   └── start.md
+│   ├── system-arch
+│   │   └── start.md
+│   └── windows
+│       └── start.md
+└── templates
+    └── YAML.yml
 ```
 
 **As contributors push to the repository, this tree display needs to be updated.*
