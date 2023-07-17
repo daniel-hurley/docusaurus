@@ -1,4 +1,4 @@
-Title | Border Gateway Protocol (BGP) Fundamentals.md
+Title | Border Gateway Protocol (BGP) Fundamentals
 --- | ---
 Contributor | Daniel Hurley [@daniel-hurley](https://github.com/daniel-hurley/)
 Date | 07-17-2023
