@@ -1,15 +1,22 @@
 # Docusaurus
 
-
 ## Goal
 An attempt to consolidate the large swath of Information Technology (IT) learning, and share the disparate parts of IT, into a single repository.
 
-## Docusaurus Guidelines
+## Docusaurus Principles
 
-- Pruning duplicate information where necessary, and provide references to elsewhere in the tree structure.
-- Featuring open source technology. That of proprietary technology is to be only referenced or for provided context.
+- Consistent structure
+- Contigious documentation
+- Expansive narrative
+- Informational leverage
+- Clean workspace
+- Completion
+- Usefulness
+- Open Source
+- Community Driven
+- Learning centric
 
-## What this repo is not
+## What the repo is not
 
 - An authorative source for configuration or architecture design
 - An engineers playground for taking notes 
@@ -19,12 +26,17 @@ An attempt to consolidate the large swath of Information Technology (IT) learnin
 
 ## IT Learning
 
-Learning in IT takes a lifelong commitment. This repo, just that as of life, is an ever evolving organism of structure and information based on the relevant moment in time. I encourage those reading and those that are interested in collaborating their notes to create a pull request, and upon merge request, we can look to incorporate your contributions into the structure.
+Learning in IT takes a lifelong commitment. This repo, just that as of life, is an ever evolving organism of structure and information based on the relevant moment in time and those who contribute. I encourage those reading and those that are interested in collaborating their notes to create a pull request, and upon merge request, the community can look to incorporate the contributions into the structure. 
 
 ## The File Structure
 
 ```
 .
+├── README.md
+├── format
+│   ├── start.md
+│   └── templates
+│       └── start.md
 ├── hardware
 │   ├── abstract
 │   │   └── start.md
@@ -49,12 +61,12 @@ Learning in IT takes a lifelong commitment. This repo, just that as of life, is 
 │       ├── aruba
 │       │   └── start.md
 │       ├── cisco
+│       │   ├── Border Gateway Protocol (BGP) Fundamentals.md
 │       │   └── start.md
 │       ├── fortinet
 │       │   └── start.md
 │       └── juniper
 │           └── start.md
-├── README.md
 ├── soft-eng
 │   ├── abstract
 │   ├── languages
@@ -67,19 +79,20 @@ Learning in IT takes a lifelong commitment. This repo, just that as of life, is 
 │       │   └── start.md
 │       └── python
 │           └── start.md
-├── system-eng
-│   ├── abstract
-│   │   └── start.md
-│   ├── container
-│   │   └── start.md
-│   ├── linux
-│   │   └── start.md
-│   ├── system-arch
-│   │   └── start.md
-│   └── windows
-│       └── start.md
-└── templates
-    └── YAML.yml
+└── sys-eng
+    ├── abstract
+    │   └── start.md
+    ├── container
+    │   └── start.md
+    ├── linux
+    │   └── start.md
+    ├── system-arch
+    │   └── start.md
+    └── windows
+        └── start.md
 ```
 
 **As contributors push to the repository, this tree display needs to be updated.*
+
+## Format and Document Types
+Read the `format/start.md` file in understanding the differying formats, document types, and templates available.
