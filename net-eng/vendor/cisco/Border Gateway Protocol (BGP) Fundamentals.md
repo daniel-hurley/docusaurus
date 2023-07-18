@@ -18,7 +18,7 @@ BGP needs to form a neighbor relationship just like IGPs. However, BGP neighbors
 
 There are two types of neighbors in BGP: Internal BGP (iBGP) or External (eBGP) neighbors. When two neighbors are in the *same* Autonomous System they are considered iBGP neighbors, while if two neighbors are in *different* Autonomous Systems they are considered eBGP neighbors. BGP behaves differently in several ways depending if it is a iBGP neighbor or eBGP neighbor. In addition, the neighborship requirements are different for routers wanting to be iBGP/eBGP neighbors. When BGP sends prefix updates to its neighbor it updates the AS Path Attribute depending on what type neighbor it is sending the update to. When a router is sending a prefix to a iBGP neighbor, it does *not* update the AS Path Attribute because the Autonomous System number is the same between the two neighbors. However for eBGP it updates the AS Path Attribute because it is moving from one Autonomous System to another Autonomous System.
 
-The AS_Path attribute in BGP essentially tells the router receiving a BGP update what Autonomous System the updates went to before getting received by said router. The reason eBGP updates the AS path attribute is because eBGP neighbors are not in the same AS, so they update it to reflect what AS it’s going to. When a BGP router is modifying the AS Path to send to another eBGP neighbor, it adds that AS path (aka the latest) in the front of the list (aka on the left). So if you see a route that says : x.x.x.x/24 23 4000 56 702, the last time that route got an update was through AS 23. The next AS ‘hop’ for the update is 4000 and so on.
+The AS_Path attribute in BGP essentially tells the router receiving a BGP update what Autonomous System the updates went to before getting received by said router. The reason eBGP updates the AS path attribute is because eBGP neighbors are not in the same AS, so they update it to reflect what AS it’s going to. When a BGP router is modifying the AS Path to send to another eBGP neighbor, it adds that AS path (aka the latest) in the front of the list (aka on the left). So if you see a route that says : `x.x.x.x/24 23 4000 56 702`, the last time that route got an update was through AS `23`. The next AS ‘hop’ for the update is `4000` and so on.
 
 ## Autonomous System
 
@@ -53,13 +53,13 @@ Requirements to form a BGP neighborship:
 - The local routers ASN must match the neighboring routers reference to the ASN with the neighbor remote-asn command
 - The peers IP Address must be reachable via Connected, static or IGP route.
 - The BGP Router IDs must not be the same between the two neighbors. BGP elects a router ID in similar fashion to other IGPs: 1. Use Setting from router-id command 2.Choose highest numeric IP on loopback interface 3. Choose the highest numeric IP Address on any non loopback interface.
-- If configured, MD5 authentication must pass. This can be configured via the neighbor [ip address] password [key] command.
+- If configured, MD5 authentication must pass. This can be configured via the `neighbor [ip address] password [key]` command.
 - Each router must be able to complete a TCP 3-way handshake with the BGP Peer.
 - The source IP address used to reach that peer must match the peers BGP neighbor command.
 
 When using the neighbor remote-as command, the source address is going to be the interface of wherever that route is pointing to. For redundancy purposes you can change the source interface of the BGP packet to something like a loopback. Changing it to a loopback interface makes it more redundant because it does not rely on an interface to be up to form a neighbor relationship. You can also have two neighbor statements going to the same router, one going to one link and the other link going to another link (different IPs, so there will be two neighbor statements). This will consume double the memory and CPU utilization on each router because even though the router has neighborship with the same box, it will receive the routes on both links.
 
-When a rotuer is trying to form an eBGP neighbor relationship, by default all eBGP messages have a TTL of 1. You can disable this using the neighbor [ip address] ebgp-multihop command. This command changes the TTL from 1 to 255. To change the source interface of BGP packets use the neighbor [ip address] update-source [interface].
+When a rotuer is trying to form an eBGP neighbor relationship, by default all eBGP messages have a TTL of 1. You can disable this using the `neighbor [ip address] ebgp-multihop` command. This command changes the TTL from 1 to 255. To change the source interface of BGP packets use the `neighbor [ip address] update-source [interface]`.
 
 ! Configure an eBGP neighbor for multihop (increases TTL)
 
@@ -67,13 +67,13 @@ When a rotuer is trying to form an eBGP neighbor relationship, by default all eB
 
 ! Force a router to use its source address for BGP packets to use the specified interface
 
-#neighbor [ip address] update-source [interface]
+`#neighbor [ip address] update-source [interface]`
 
 ! Verify
 
 `#show ip bgp summary`
 
-iBGP vs eBGP Neighborship Differences
+## iBGP vs eBGP Neighborship Differences
 
 The only difference between iBGP and eBGP neighbors is that iBGP neighbors have the *same* ASN between the two routers connecting each other. eBGP neighbors have *different* ASN numbers connecting each other. The other difference is that the TTL value for iBGP neighbors is 255 by default. With eBGP, the TTL by default was 1 and needed to be changed to higher number so that it can communicate with routers multiple hops away. The configuration between an iBGP and eBGP relationship is the same.
 
@@ -142,7 +142,7 @@ The output of show ip bgp displays a high level overview of all the routes learn
 - r Means that there is a failure to put this prefix in the IP routing table (Better route already in routing table, Routing table is maxed (memory is full), VRF routing table limit succeeded)
 - i Means that it learned about this prefix from a iBGP neighbor
 
-A next hop of 0.0.0.0 means that the local router advertises this either via network or redistribution command. The Path Column shows the AS path that the particular prefix was learned from. A ? means that the prefix was locally learned within the routers AS.
+A next hop of `0.0.0.0` means that the local router advertises this either via network or redistribution command. The Path Column shows the AS path that the particular prefix was learned from. A ? means that the prefix was locally learned within the routers AS.
 
 ! Verify BGP Learned Routes
 
@@ -165,11 +165,11 @@ BGP uses multiple path attributes to determine best path for a certain prefix. B
 
 There are three (3) ways to inject routes into BGP:
 
-- By using the BGP network command
+- By using the BGP `network` command
 - By using redistribution
 - By using route summarization
 
-The network command for BGP is different than IGPs. It does not “turn on” BGP on an interface, nor does it allow for dynamic neighborship of BGP on interface (BGP has to have static neighbors anyways). It also doesn’t allow hellos on the interface (BGP uses keepalives). The network command in BGP looks for the *exact* prefix/length matches in the IP routing table, and originates that prefix/length into the BGP table. It does not matter if it is a directly connected, static, or IGP route. Aslong as the route lives in the routing table and it is not a BGP route, the network command will take that route and convert it into BGP.
+The network command for BGP is different than IGPs. It does not “turn on” BGP on an interface, nor does it allow for dynamic neighborship of BGP on interface (BGP has to have static neighbors anyways). It also doesn’t allow hellos on the interface (BGP uses keepalives). The `network` command in BGP looks for the *exact* prefix/length matches in the IP routing table, and originates that prefix into the BGP table. It does not matter if it is a directly connected, static, or IGP route. Aslong as the route lives in the routing table and it is not a BGP route, the network command will take that route and convert it into BGP.
 
 ! To inject a route into BGP, use the following command in BGP config mode. The mask is optional. If the mask is omitted then the router assumes a classful boundary.
 
@@ -221,9 +221,9 @@ If a router running BGP receives an update from an iBGP neighbor, and the next h
 There are a few ways to resolve this issue:
 
 - Advertise those IP addresses into the internal network (static route, IGP)
-- Use the neighbor next-hop-self command
+- Use the `neighbor next-hop-self` command
 
-The neighbor next-hop-self command changes the next-hop IP address to the source address of the neighbor statement you have with your iBGP neighbor. By default, as stated previously, when iBGP neighbors send updates the next-hop IP address is unchanged. This command forces it to change to the source address of the neighbor interface.
+The `neighbor next-hop-self` command changes the next-hop IP address to the source address of the neighbor statement you have with your iBGP neighbor. By default, as stated previously, when iBGP neighbors send updates the next-hop IP address is unchanged. This command forces it to change to the source address of the neighbor interface.
 
 ! Configure a iBGP neighbor to send the next-hop IP address of it’s source interface of neighbor relationship in the update message
 
