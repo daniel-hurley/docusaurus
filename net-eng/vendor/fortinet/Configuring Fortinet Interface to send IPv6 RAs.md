@@ -33,7 +33,12 @@ To enable a fortinet interface to send IPv6 RAs on a LAN, reference the configur
 
 ```
 
-`ip6-address` and `ip6-send-adv` parameters are required to 1. enable IPv6 on the interface, with the a-lotted IPv6 Address and enable the interface to send Route Advertisements. Though, more configuration is needed.
+`ip6-address` and `ip6-send-adv` parameters are required to 
+
+1. enable IPv6 on the interface, with the a-lotted IPv6 Address and
+2. enable the interface to send Route Advertisements.
+
+Though, more configuration is needed.
 
 `ip6-other-flag` enables the Fortinet to include DNS servers inside it’s Route Advertisements (RAs).
 
