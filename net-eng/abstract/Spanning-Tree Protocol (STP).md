@@ -1,3 +1,8 @@
+Title | Spanning-Tree Protocol (STP)
+--- | ---
+Contributor | Daniel Hurley [@daniel-hurley](https://github.com/daniel-hurley/)
+Date | 07-19-2023
+
 ## Spanning-Tree Protocol (STP)
 
 Spanning-Tree Protocol (STP) is a protocol to prevent loops in a switched 802.11 network by blocking ports based on a couple key parameters. 1: Priority of a bridge and 2. Port Roles for each Switch connection. STP uses Bridge Protocol Data Unit (BPDU) to converge the network. There is an election process using BPDUs to elect the root bridge of the network. Each BPDU has BID of who they think the root bridge is (themselves at first), and their own priority to identify the root bridge. Once a bridge sees a lower priority they stop generating BPDUs and only forward BPDUs from the root (this is only the case for vanilla 802.1D STP). Eventually a bridge is elected the root in a topology – and looped connections are blocked ( e.g discarding/blocking) based on alternate paths to the root bridge.
