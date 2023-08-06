@@ -6,7 +6,7 @@ An attempt to consolidate the large swath of Information Technology (IT) learnin
 ## Docusaurus Principles
 
 - Consistent structure
-- Contigious documentation
+- Contiguous documentation
 - Expansive narrative
 - Informational leverage
 - Clean workspace
@@ -95,4 +95,4 @@ Learning in IT takes a lifelong commitment. This repo, just that as of life, is 
 **As contributors push to the repository, this tree display needs to be updated.*
 
 ## Format and Document Types
-Read the `format/start.md` file in understanding the differying formats, document types, and templates available.
+Read the `format/start.md` file in understanding the differing formats, document types, and templates available.
