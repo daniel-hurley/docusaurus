@@ -1,4 +1,5 @@
 # Docusaurus
+![](docs/assets/docusaurus-logo.png)
 
 ## Goal
 An attempt to consolidate the large swath of Information Technology (IT) learning, and share the disparate parts of IT, into a single repository.

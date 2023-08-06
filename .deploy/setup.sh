@@ -1,54 +1,67 @@
 #!/usr/bin/env bash
 
-# Install dependencies
-echo "----------"
-echo "Installing dependencies"
-echo "----------"
-
+#                                                   Install dependencies
 pip install mkdocs-material
 
-echo "----------"
-echo "Successfully installed dependencies"
-echo "----------"
 
-
-# Setup MKDocs directory
-echo "----------"
-echo "Setting up new mkdocs directory"
-echo "----------"
-
-# create and load MKDocs configuration
+#                                                   Setup MKDocs directory (if non-existent)
 cd .
-cat > mkdocs.yml << EOF
+mkdocs="./mkdocs.yml"
+
+if [[ -f "$mkdocs" ]]; then
+    echo "File $mkdocs exists, skipping."
+else
+    echo "File $mkdocs does not exist, creating."
+    cat > mkdocs.yml << EOF
 # MKDocs config document
-site_name: docusaurus-local
+site_name: docusaurus
 
 theme:
     name: material
+    logo: assets/docusaurus-logo.png
+    favicon: assets/docusaurus-logo.png
     palette:
         primary: blue
-    features:
-        - navigation.path
 
 nav:
-    - documentation:
-        - index.md
-    - sub-section:
-        - additional.md
+    - Home: index.md
+    - Hardware:
+        - Start: hardware/start.md
+        - Hardware: /hardware/*
+    - Network Engineering:
+        - Start: net-eng/start.md
+        - Network Engineering: net-eng/*
+    - Software Engineering:
+        - Start: soft-eng/start.md
+        - Software Engineering: soft-eng/*
+    - Systems Engineering:
+        - Start: sys-eng/start.md
+        - Linux: sys-eng/linux/linux.md
 
-copyright: Copyright; 2023 - Sev1Tech
+markdown_extensions:
+    - toc:
+        permalink: true
+
+plugins:
+    - search
+
+
+copyright: Copyright; 2023 - Docusaurus
 extra:
     generator: false
 EOF
+fi
 
-echo "creating index.md"
-
-# Create and load initial index.md
+#                                                   Create and load initial index.md
 cd ./
 mkdir docs
 cd ./docs
 cat > index.md << EOF
 # Welcome to Docusaurus - docusaurus-static
+![](/assets/docusaurus-logo.png)
+
+
+
 To find out more, see [mkdocs.org](https://www.mkdocs.org). 
 
 ## commands
@@ -61,17 +74,6 @@ To find out more, see [mkdocs.org](https://www.mkdocs.org).
         ...       # Other markdown pages, images and other files.
 EOF
 
-# Create and load initial "additional" content
-cd ./docs
-cat > additional.md << EOF
-# Start Making Documentation
-Share with your team.
-EOF
-
-echo " ----> EVERYTHING IS GOOD TO GO <----"
-echo "ctrl-c to stop local web server"
-
-
-# return to root and serve mkdocs
+#                                                   return to root and serve mkdocs
 cd ../
 mkdocs serve

@@ -1,0 +1,36 @@
+# MKDocs config document
+site_name: docusaurus
+
+theme:
+    name: material
+    logo: assets/docusaurus-logo.png
+    favicon: assets/docusaurus-logo.png
+    palette:
+        primary: blue
+
+nav:
+    - Home: index.md
+    - Hardware:
+        - Start: hardware/start.md
+        - Hardware: /hardware/*
+    - Network Engineering:
+        - Start: net-eng/start.md
+        - Network Engineering: net-eng/*
+    - Software Engineering:
+        - Start: soft-eng/start.md
+        - Software Engineering: soft-eng/*
+    - Systems Engineering:
+        - Start: sys-eng/start.md
+        - Linux: sys-eng/linux/linux.md
+
+markdown_extensions:
+    - toc:
+        permalink: true
+
+plugins:
+    - search
+
+
+copyright: Copyright; 2023 - Docusaurus
+extra:
+    generator: false

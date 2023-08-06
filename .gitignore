@@ -1,2 +1,2 @@
-docs/**
-mkdocs.yml
+# add documents to ignore. This may be worth doing if we have individual local dev environments that we don't want sync'd
+# especially with the mkdocs.yml configuration file; which updates the webfront. 
