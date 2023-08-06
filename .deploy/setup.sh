@@ -25,9 +25,11 @@ theme:
 
 nav:
     - Home: index.md
+    - Structure: format/start.md
     - Hardware:
         - Start: hardware/start.md
-        - Hardware: /hardware/*
+        - abstract: hardware/abstract/start.md
+        - cpu-arch: hardware/cpu-arch/start.md
     - Network Engineering:
         - Start: net-eng/start.md
         - Network Engineering: net-eng/*
