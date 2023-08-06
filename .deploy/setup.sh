@@ -51,29 +51,13 @@ extra:
     generator: false
 EOF
 fi
-
 #                                                   Create and load initial index.md
-cd ./
-mkdir docs
-cd ./docs
-cat > index.md << EOF
-# Welcome to Docusaurus - docusaurus-static
-![](/assets/docusaurus-logo.png)
-
-
-
-To find out more, see [mkdocs.org](https://www.mkdocs.org). 
-
-## commands
-`mkdocs -h` for help
-
-## Project Layout
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-EOF
+if [ -f "./readme.md" ]; then
+    cp ./readme.md ./docs/index.md
+    echo "appended text" >> ./docs/index.md
+else
+    echo "readme.md not found!"
+fi
 
 #                                                   return to root and serve mkdocs
-cd ../
 mkdocs serve
